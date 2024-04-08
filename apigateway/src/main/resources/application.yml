@@ -1,6 +1,31 @@
 spring:
   application:
     name: apigateway
+  cloud:
+    gateway:
+      routes:
+        - id: userservice
+          uri: lb://USERSERVICE
+          predicates:
+            - Path=/userservice/**
+            - Method=GET
+          filters:
+            - RewritePath=/userservice/(?<segment>.*), /$\{segment}
+        ##회원가입
+        - id: userservice
+          uri: lb://USERSERVICE
+          predicates:
+            - Path=/userservice/**
+            - Method=POST
+          filters:
+            - RewritePath=/userservice/(?<segment>.*), /$\{segment}
+        - id: userservice
+          uri: lb://USERSERVICE
+          predicates:
+            - Path=/userservice
+            - Method=GET
+          filters:
+            - RewritePath=/userservice, /
 server:
   port: 8000
 eureka:
