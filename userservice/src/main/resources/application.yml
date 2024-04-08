@@ -1,6 +1,25 @@
 spring:
   application:
     name: userservice
+  r2dbc:
+    url: r2dbc:pool:mariadb://localhost:3307/webflux
+    username: root
+    password: 123qwe
+#    pool:
+#      enabled: true
+#      initial-size: 10
+#      max-acquire-time: 5s
+#      max-create-connection-time: 5s
+#      max-idle-time: 60m
+#      max-life-time: 60m
+#      max-size: 10
+
+logging:
+  level:
+    io.r2dbc.pool: DEBUG
+    reactor.pool: DEBUG
+    #org.springframework.r2dbc.core.DefaultDatabaseClient: debug
+
 server:
   port: 0
 eureka:
