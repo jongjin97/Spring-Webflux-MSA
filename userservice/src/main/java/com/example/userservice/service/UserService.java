@@ -15,14 +15,22 @@ import reactor.core.publisher.Mono;
 public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+//    public Mono<ResponseUser> saveUser(RequestUser requestUser){
+//        User user = new User(requestUser).encode(passwordEncoder);
+//        return userRepository.save(user).map(ResponseUser::new);
+//    }
+
     public Mono<ResponseUser> saveUser(RequestUser requestUser){
         User user = new User(requestUser).encode(passwordEncoder);
-
-        return userRepository.findUserByEmail(requestUser.getEmail())
-                .flatMap(user1 -> {
-                    if(user1.getId() == null)
-                        return Mono.error(new RuntimeException("email exists."));
-                    return userRepository.save(user1).map(ResponseUser::new);
+        Mono<User> findUser = userRepository.findUserByEmail(requestUser.getEmail())
+                .hasElement()
+                .flatMap(hasEelemnt -> {
+                    if(hasEelemnt)
+                        return Mono.error(new RuntimeException("User with email " + user.getEmail() + " already exists."));
+                    else
+                        return userRepository.save(user);
                 });
+
+        return findUser.map(ResponseUser::new);
     }
 }

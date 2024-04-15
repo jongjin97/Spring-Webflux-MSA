@@ -18,7 +18,7 @@ logging:
   level:
     io.r2dbc.pool: DEBUG
     reactor.pool: DEBUG
-    #org.springframework.r2dbc.core.DefaultDatabaseClient: debug
+    org.springframework.r2dbc.core.DefaultDatabaseClient: debug
 
 server:
   port: 0
