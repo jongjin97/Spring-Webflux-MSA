@@ -8,7 +8,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-@Table("user")
+@Table("my_topic_user")
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor

@@ -30,7 +30,7 @@ public class KafkaUserProducer {
             .name("user")
             .build();
 
-    public RequestUser userSend(String topic, RequestUser user) throws JsonProcessingException {
+    public User userSend(String topic, User user) throws JsonProcessingException {
         UserPayload userPayload = UserPayload.builder()
                 .email(user.getEmail())
                 .password(user.getPassword())

@@ -46,7 +46,7 @@ public class UserService {
                         return Mono.error(new RuntimeException("User with email " + user.getEmail() + " already exists."));
                     else {
                         try {
-                            return Mono.just(kafkaUserProducer.userSend("my_topic_user", requestUser)).map(User::new);
+                            return Mono.just(kafkaUserProducer.userSend("my_topic_user", user));
                         } catch (JsonProcessingException e) {
                             return Mono.error(new RuntimeException(e));
                         }
