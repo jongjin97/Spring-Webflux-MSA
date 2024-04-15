@@ -24,6 +24,6 @@ public class UserController {
 
     @PostMapping("/signup")
     Mono<ResponseUser> signup(@RequestBody RequestUser requestUser){
-        return userService.saveUser(requestUser);
+        return userService.saveUser2(requestUser);
     }
 }

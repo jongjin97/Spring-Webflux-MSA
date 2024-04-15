@@ -5,6 +5,10 @@ spring:
     url: r2dbc:pool:mariadb://localhost:3307/webflux
     username: root
     password: 123qwe
+  output:
+    ansi:
+      enabled: always
+
 #    pool:
 #      enabled: true
 #      initial-size: 10
